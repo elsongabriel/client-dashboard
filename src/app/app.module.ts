@@ -15,6 +15,14 @@ import {NotFoundComponent} from './components/not-found/not-found.component';
 import {SettingsComponent} from './components/settings/settings.component';
 import {AppRoutingModule} from './app-routing.module';
 
+import {AngularFireModule} from '@angular/fire';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {environment} from '../environments/environment';
+// import {AngularFireModule} from 'angularfire2';
+// import {AngularFirestoreModule} from 'angularfire2/firestore';
+// import {AngularFireAuthModule} from 'angularfire2/auth';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -28,11 +36,14 @@ import {AppRoutingModule} from './app-routing.module';
         LoginComponent,
         RegisterComponent,
         NotFoundComponent,
-        SettingsComponent
+        SettingsComponent,
     ],
     imports: [
         BrowserModule,
-        AppRoutingModule
+        AppRoutingModule,
+        AngularFireModule.initializeApp(environment.firebase/*, 'client-dashboard'*/),
+        AngularFirestoreModule,
+        AngularFireAuthModule
     ],
     providers: [],
     bootstrap: [AppComponent]
