@@ -1,3 +1,74 @@
-<p>
-  add-client works!
-</p>
+<div class="row">
+    <div class="col-md-6 col-xs-12">
+        <a routerLink="/" class="btn btn-info"><i class="fa fa-arrow-circle-o-left"></i> Voltar</a>
+    </div>
+    <div class="col-md-6 col-xs-12">
+
+    </div>
+</div>
+
+<div class="card mt-2">
+    <div class="card-header">
+        Adicionar Cliente
+    </div>
+    <div class="card-body">
+        <form #clientForm="ngForm" (ngSubmit)="onSubmit(clientForm)">
+            <div class="form-group">
+                <label for="name">Nome</label>
+                <input type="text" id="name" name="name" class="form-control"
+                       #clientName="ngModel"
+                       [ngClass]="{'is-invalid':clientName.errors && clientName.touched}"
+                       [(ngModel)]="client.name"
+                       minlength="4"
+                       maxlength="100"
+                       required>
+                <div [hidden]="!clientName.errors?.required" class="invalid-feedback">Nome obrigatório</div>
+                <div [hidden]="!clientName.errors?.minlength" class="invalid-feedback">
+                    Nome deve possuir mais de 4 caracteres
+                </div>
+                <div [hidden]="!clientName.errors?.maxlength" class="invalid-feedback">
+                    Nome deve possuir no máximo 100 caracteres
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="text" id="email" name="email" class="form-control"
+                       #clientEmail="ngModel"
+                       [ngClass]="{'is-invalid':clientEmail.errors && clientEmail.touched}"
+                       [(ngModel)]="client.email"
+                       pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                       required>
+                <div [hidden]="!clientEmail.errors?.required" class="invalid-feedback">E-mail obrigatório</div>
+                <div [hidden]="!clientEmail.errors?.pattern" class="invalid-feedback">E-mail incorreto</div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Telefone</label>
+                <input type="text" id="phone" name="phone" class="form-control"
+                       #clientPhone="ngModel"
+                       [ngClass]="{'is-invalid':clientPhone.errors && clientPhone.touched}"
+                       [(ngModel)]="client.phone"
+                       minlength="10"
+                       maxlength="11"
+                       required>
+                <div [hidden]="!clientPhone.errors?.required" class="invalid-feedback">Telefone obrigatório</div>
+                <div [hidden]="!clientPhone.errors?.minlength && !clientPhone.errors?.maxlength"
+                     class="invalid-feedback">
+                    Telefone deve possuir no mínimo 10 a 11 números
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="balance">Saldo</label>
+                <input type="number" id="balance" name="balance" class="form-control"
+                       #clientBalance="ngModel"
+                       [(ngModel)]="client.balance"
+                       [disabled]="disabledBalanceOnAdd">
+            </div>
+
+            <input type="hidden" [(ngModel)]="client.id" id="id" name="id">
+            <input type="submit" class="btn btn-primary btn-block" value="Adicionar">
+        </form>
+    </div>
+</div>
