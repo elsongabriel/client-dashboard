@@ -39,11 +39,11 @@ export class AddClientComponent implements OnInit {
             });
         } else {
             this.clientService.newClient(value);
-            this.flashMessage.show('Cliente salvo com sucesso.', {
+            this.flashMessage.show('Cliente criado com sucesso.', {
                 cssClass: 'alert-success', timeout: 4000
             });
             this.form.reset();
-            this.router.navigate(['/'])
+            this.router.navigate(['/']);
         }
     }
 }
