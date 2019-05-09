@@ -32,32 +32,10 @@ export class ClientService {
                     return data;
                 });
             }));
-
-        // this.clients = this.clientsCollection.snapshotChanges().map(changes => {
-        //     return changes.map(action => {
-        //         const data = action.payload.doc.data() as Client;
-        //         data.id = action.payload.doc.id;
-        //         return data;
-        //     });
-        // });
-
-
-        // let test = this.clientsCollection.snapshotChanges();
-        // console.log(test);
-        // return this.clients;
-
-        // let test: Observable<any[]> = this.clientsCollection.snapshotChanges();
-        // console.log(test);
-
-        // this.clients = this.clientsCollection.snapshotChanges().map(changes => {
-        //     return changes.map(action => {
-        //         const data = action.payload.doc.data() as Client;
-        //         data.id = action.payload.doc.id;
-        //         return data;
-        //     });
-        // });
-        //
         return this.clients;
     }
 
+    newClient(client: Client) {
+        this.clientsCollection.add(client);
+    }
 }

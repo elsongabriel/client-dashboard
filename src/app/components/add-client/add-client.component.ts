@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Client} from "../../models/Client";
 import {ClientService} from "../../services/client.service";
+import {FlashMessagesService} from "angular2-flash-messages";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-add-client',
@@ -16,14 +18,32 @@ export class AddClientComponent implements OnInit {
         balance: 0
     };
     disabledBalanceOnAdd: boolean = true;
+    @ViewChild('clientForm') form: any;
 
-    constructor(private clientService: ClientService) {
+    constructor(private flashMessage: FlashMessagesService,
+                private clientService: ClientService,
+                private router: Router) {
     }
 
     ngOnInit() {
     }
 
-    onSubmit(e) {
+    onSubmit({value, valid}: { value: Client, valid: boolean }) {
+        if (this.disabledBalanceOnAdd) {
+            value.balance = 0;
+        }
 
+        if (!valid) {
+            this.flashMessage.show('Por favor verifique os campos!', {
+                cssClass: 'alert-danger', timeout: 4000
+            });
+        } else {
+            this.clientService.newClient(value);
+            this.flashMessage.show('Cliente salvo com sucesso.', {
+                cssClass: 'alert-success', timeout: 4000
+            });
+            this.form.reset();
+            this.router.navigate(['/'])
+        }
     }
 }
