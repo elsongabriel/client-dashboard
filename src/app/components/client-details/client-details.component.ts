@@ -14,7 +14,7 @@ export class ClientDetailsComponent implements OnInit {
     id: string;
     client: Client;
     hasBalance: boolean = false;
-    showBalanceUpdatedInput: boolean = false;
+    showBalanceUpdateInput: boolean = false;
 
     constructor(
         private clientService: ClientService,
@@ -35,6 +35,13 @@ export class ClientDetailsComponent implements OnInit {
 
     onDeleteClick() {
 
+    }
+
+    updateBalance() {
+        this.clientService.updateClient(this.client);
+        this.flashMessage.show('Saldo atualizado.', {
+            cssClass: 'alert-success', timeout: 4000
+        });
     }
 
 }

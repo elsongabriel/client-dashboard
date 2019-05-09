@@ -24,11 +24,26 @@
             </div>
             <div class="col-md-4 col-sm-6 col-xs-6">
                 <h4 class="pull-right">
-                    Saldo: <span [class.text-danger]="hasBalance"
-                                 [class.text-success]="!hasBalance">
+                    Saldo: <span [class.text-success]="hasBalance"
+                                 [class.text-danger]="!hasBalance">
                         {{client.balance | currency:"BRL":"symbol"}}
                         </span>
+                    <small>
+                        <a (click)="showBalanceUpdateInput = !showBalanceUpdateInput">
+                            <i class="fa fa-pencil"></i></a>
+                    </small>
                 </h4>
+                <div class="clearfix">
+                    <form *ngIf="showBalanceUpdateInput" (submit)="updateBalance()">
+                        <div class="input-group">
+                            <input type="text" id="balance" name="balance" class="form-control"
+                                   [(ngModel)]="client.balance">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-primary">Atualizar</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 
