@@ -9,16 +9,17 @@ import {ClientDetailsComponent} from './components/client-details/client-details
 import {SettingsComponent} from './components/settings/settings.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import {RouterModule, Routes} from '@angular/router';
+import {AuthGuard} from "./guards/auth.guard";
 
 const routes: Routes = [
-    {path: '', component: DashboardComponent},
+    {path: '', component: DashboardComponent, canActivate: [AuthGuard]},
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
-    {path: 'clients', component: ClientsComponent},
-    {path: 'client/add', component: AddClientComponent},
-    {path: 'client/edit/:id', component: EditClientComponent},
-    {path: 'client/:id', component: ClientDetailsComponent},
-    {path: 'settings', component: SettingsComponent},
+    {path: 'clients', component: ClientsComponent, canActivate: [AuthGuard]},
+    {path: 'client/add', component: AddClientComponent, canActivate: [AuthGuard]},
+    {path: 'client/edit/:id', component: EditClientComponent, canActivate: [AuthGuard]},
+    {path: 'client/:id', component: ClientDetailsComponent, canActivate: [AuthGuard]},
+    {path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]},
     {path: '**', component: NotFoundComponent}
 ];
 
@@ -26,7 +27,8 @@ const routes: Routes = [
     exports: [RouterModule],
     imports: [
         RouterModule.forRoot(routes)
-    ]
+    ],
+    providers: [AuthGuard]
 })
 export class AppRoutingModule {
 }

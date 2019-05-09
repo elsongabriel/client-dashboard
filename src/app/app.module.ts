@@ -16,6 +16,8 @@ import {RegisterComponent} from './components/register/register.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import {SettingsComponent} from './components/settings/settings.component';
 import {AppRoutingModule} from './app-routing.module';
+import {ClientService} from "./services/client.service";
+import {AuthService} from "./services/auth.service";
 
 import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
@@ -49,7 +51,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
         AngularFirestoreModule,
         AngularFireAuthModule
     ],
-    providers: [],
+    providers: [ClientService, AuthService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
