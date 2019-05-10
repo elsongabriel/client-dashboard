@@ -1,3 +1,30 @@
-<p>
-  settings works!
-</p>
+<div class="row">
+        <h2><i class="fa fa-users"></i> Usuários</h2>
+
+</div>
+
+<table class="table table-striped" *ngIf="users?.length > 0; else noUsers">
+    <thead class="thead-inverse">
+    <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Balance</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let client of clients">
+        <td>{{client.name}}</td>
+        <td>{{client.email}}</td>
+        <td>{{client.balance | currency:"BRL":"symbol"}}</td>
+        <td><a routerLink="client/{{client.id}}" class="btn btn-secondary btn-sm">
+            <i class="fa fa-eye"></i></a></td>
+    </tr>
+    </tbody>
+
+</table>
+
+<ng-template #noUsers>
+    <hr>
+    <h5>Não foram encontrados usuários!</h5>
+</ng-template>

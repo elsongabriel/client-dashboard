@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from "@angular/forms";
-import {FlashMessagesModule} from "angular2-flash-messages";
+import {FormsModule} from '@angular/forms';
+import {FlashMessagesModule} from 'angular2-flash-messages';
 
 import {AppComponent} from './app.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
@@ -16,8 +16,9 @@ import {RegisterComponent} from './components/register/register.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import {SettingsComponent} from './components/settings/settings.component';
 import {AppRoutingModule} from './app-routing.module';
-import {ClientService} from "./services/client.service";
-import {AuthService} from "./services/auth.service";
+import {ClientService} from './services/client.service';
+import {AuthService} from './services/auth.service';
+import {SettingsService} from './services/settings.service';
 
 import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
@@ -51,7 +52,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
         AngularFirestoreModule,
         AngularFireAuthModule
     ],
-    providers: [ClientService, AuthService],
+    providers: [ClientService, AuthService, SettingsService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

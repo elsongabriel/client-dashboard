@@ -28,7 +28,7 @@
                                  [class.text-danger]="!hasBalance">
                         {{client.balance | currency:"BRL":"symbol"}}
                         </span>
-                    <small>
+                    <small *ngIf="disabledBalanceOnEdit">
                         <a (click)="showBalanceUpdateInput = !showBalanceUpdateInput">
                             <i class="fa fa-pencil"></i></a>
                     </small>

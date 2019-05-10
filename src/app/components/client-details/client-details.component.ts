@@ -3,6 +3,7 @@ import {ClientService} from "../../services/client.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FlashMessagesService} from "angular2-flash-messages";
 import {Client} from "../../models/Client";
+import {SettingsService} from "../../services/settings.service";
 
 @Component({
     selector: 'app-client-details',
@@ -15,12 +16,14 @@ export class ClientDetailsComponent implements OnInit {
     client: Client;
     hasBalance: boolean = false;
     showBalanceUpdateInput: boolean = false;
+    disabledBalanceOnEdit: boolean = this.settingsService.getSettings().disableBalanceOnEdit;
 
     constructor(
         private clientService: ClientService,
         private router: Router,
         private route: ActivatedRoute,
-        private flashMessage: FlashMessagesService) {
+        private flashMessage: FlashMessagesService,
+        private settingsService: SettingsService) {
     }
 
     ngOnInit() {
