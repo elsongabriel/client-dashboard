@@ -33,7 +33,7 @@ Using firebase deploy.
 > firebase init
     > select using space firestore and hosting
     > select the project
-    > type 'dist' folder to change the public
+    > type 'dist/client-dashboard' folder to change the public
     > erase dist folder with index.html
 > ng build
 > firebase deploy
