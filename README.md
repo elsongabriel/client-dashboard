@@ -25,3 +25,17 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Firebase Deploy
+Using firebase deploy.
+``` 
+> firebase login
+> firebase init
+    > select using space firestore and hosting
+    > select the project
+    > type 'dist' folder to change the public
+    > erase dist folder with index.html
+> ng build
+> firebase deploy
+> firebase open hosting:site
+```
