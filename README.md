@@ -28,7 +28,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Firebase Deploy
 Using firebase deploy.
-``` 
+```
+> npm install -g firebase-tool
 > firebase login
 > firebase init
     > select using space firestore and hosting
