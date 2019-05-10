@@ -1,30 +1,40 @@
 <div class="row">
-        <h2><i class="fa fa-users"></i> Usuários</h2>
-
+    <div class="col-md-6">
+        <a routerLink="/" class="btn btn-info">
+            <i class="fa fa-arrow-circle-o-left"></i> Voltar</a>
+    </div>
+    <div class="col-md-6"></div>
 </div>
 
-<table class="table table-striped" *ngIf="users?.length > 0; else noUsers">
-    <thead class="thead-inverse">
-    <tr>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Balance</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let client of clients">
-        <td>{{client.name}}</td>
-        <td>{{client.email}}</td>
-        <td>{{client.balance | currency:"BRL":"symbol"}}</td>
-        <td><a routerLink="client/{{client.id}}" class="btn btn-secondary btn-sm">
-            <i class="fa fa-eye"></i></a></td>
-    </tr>
-    </tbody>
+<div class="card mt-2">
+    <div class="card-header">Editar Configurações</div>
+    <div class="card-body">
+        <form (submit)="onSubmit()">
+            <div class="form-group">
+                <label for="allowRegistration">Permitir Registro</label>&nbsp;
+                <input type="checkbox"
+                       name="allowRegistration" id="allowRegistration"
+                       [checked]="settings.allowRegistration"
+                       (change)="updateSetting('allowRegistration')"/>
+            </div>
 
-</table>
+            <div class="form-group">
+                <label for="disableBalanceOnAdd">Desabilitar Saldo quando Salvar</label>&nbsp;
+                <input type="checkbox"
+                       name="disableBalanceOnAdd" id="disableBalanceOnAdd"
+                       [checked]="settings.disableBalanceOnAdd"
+                       (change)="updateSetting('disableBalanceOnAdd')"/>
+            </div>
 
-<ng-template #noUsers>
-    <hr>
-    <h5>Não foram encontrados usuários!</h5>
-</ng-template>
+            <div class="form-group">
+                <label for="disableBalanceOnEdit">Desabilitar Saldo quando Atualizar</label> &nbsp;
+                <input type="checkbox"
+                       name="disableBalanceOnEdit" id="disableBalanceOnEdit"
+                       [checked]="settings.disableBalanceOnEdit"
+                       (change)="updateSetting('disableBalanceOnEdit')"/>
+            </div>
+
+            <input type="submit" value="Salvar" class="btn btn-primary btn-block">
+        </form>
+    </div>
+</div>
